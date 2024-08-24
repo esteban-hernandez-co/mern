@@ -20,7 +20,7 @@ router.get('/test', (req, res) => {
     res.end('greeting from testing route ')
 })
 
-
+//add User
 router.post('/adduser', (req, res) => {
     const newUser = new userModel({
         name: req.body.name,
@@ -38,6 +38,17 @@ router.post('/adduser', (req, res) => {
         error = err
         res.send(err)
     }
-    
+})
 
+//get Users
+router.get('/getusers', (req, res)=> {
+    try{
+         userModel.find({}, function(docs, err){
+            res.send(docs)
+        })
+        
+    }catch(error){
+        res.send(error)
+    }
+    
 })
