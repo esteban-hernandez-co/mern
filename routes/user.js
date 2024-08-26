@@ -41,9 +41,9 @@ router.post('/adduser', (req, res) => {
 })
 
 //get Users
-router.get('/getusers', (req, res)=> {
+router.get('/getusers', async (req, res)=> {
     try{
-         userModel.find({}, function(docs, err){
+         await userModel.find({}, function(docs, err){
             res.send(docs)
         })
         

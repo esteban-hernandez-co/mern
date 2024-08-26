@@ -5,24 +5,45 @@ function UsersList(){
 
     const[userData, setUserData] = useState([])
 
-    useEffect(() => {
-        async function getUser() {
-            try {
-              const response = await axios.get('api/user/getusers')
-              console.log(response.data);
-            } catch (error) {
-              console.error(error);
-            }
+    async function getUsers() {
+        try {
+          const response = await axios.get('api/user/getusers').then(res => {
+            console.log('res')
+            console.log(res.data)
+            setUserData(res.data)
+          })
+          console.log('response')
+          console.log(response)
+          
+          
+        } catch (error) {
+          console.error(error)
         }
-        getUser()
-        
+    }
+
+    useEffect(() => {
+        getUsers()
     }, [])
-    return (
-        <div>
-            <h2>Users List</h2>
-            <IndividualUser/>
-        </div>
-    )
+
+    //map userslist
+    if(!userData){
+        getUsers()
+    }else{
+        const userList = userData.map(user => {
+            return(
+                <div>
+                    <IndividualUser user={user}/>
+                </div>
+            )
+        })
+        return (
+            <div>
+                <h2>Users List</h2>
+                {userList}
+            </div>
+        )
+    }
+    
 }
 
 export default UsersList
