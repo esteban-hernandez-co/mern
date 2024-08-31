@@ -43,12 +43,9 @@ router.post('/adduser', (req, res) => {
 //get Users
 router.get('/getusers', async (req, res)=> {
     try{
-         await userModel.find({}, function(docs, err){
-            res.send(docs)
-        })
-        
-    }catch(error){
-        res.send(error)
+        let docs = await userModel.find({})
+        res.send(docs)
+    }catch(err){
+        res.send(err)
     }
-    
 })
