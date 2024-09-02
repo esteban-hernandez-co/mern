@@ -8,6 +8,7 @@ const schemaUser = new schema({
     name: String,
     email: String,
     phone: String,
+    mobile: String,
     userId: String
 })
 
@@ -44,6 +45,16 @@ router.post('/adduser', (req, res) => {
 router.get('/getusers', async (req, res)=> {
     try{
         let docs = await userModel.find({})
+        res.send(docs)
+    }catch(err){
+        res.send(err)
+    }
+})
+
+//get Users
+router.get('/getuserdata', async (req, res)=> {
+    try{
+        let docs = await userModel.find({_id:req.body._id})
         res.send(docs)
     }catch(err){
         res.send(err)
