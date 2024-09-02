@@ -36,7 +36,7 @@ function App() {
         <Routes>
           <Route path='/' element={<UsersList/>} exact></Route>
           <Route path='/addUser' element={<AddUser/>} exact></Route>
-          <Route path='/editUser' element={<EditUser/>} exact></Route>
+          <Route path='/editUser/:_id' element={<EditUser/>} exact></Route>
         </Routes>
       </BrowserRouter>
       
