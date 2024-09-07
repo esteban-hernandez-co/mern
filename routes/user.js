@@ -51,8 +51,9 @@ router.get('/getusers', async (req, res)=> {
     }
 })
 
-//get Users
-router.get('/getuserdata', async (req, res)=> {
+//User
+router.route('/userdata')
+.get(async (req, res) =>{
     try{
         let docs = await userModel.find({_id:req.body._id})
         res.send(docs)
@@ -60,3 +61,37 @@ router.get('/getuserdata', async (req, res)=> {
         res.send(err)
     }
 })
+.post(async (req, res) => {
+    try{
+        let docs = await userModel.find({_id:req.body._id})
+        res.send(docs)
+    }catch(err){
+        res.send(err)
+    }
+})
+.put(async(req, res) =>{
+    try{
+        let docs = await userModel.findOneAndUpdate({_id:req.body._id}, {
+            name: req.body.name,
+            email: req.body.email,
+            mobile: req.body.mobile,
+        })
+        res.send('User updated successfully')
+    }catch(err){
+        res.send(err)
+    }
+})
+
+router.route('/deleteuserdata')
+.post(async(req, res) =>{
+    try{
+        let docs = await userModel.findOneAndDelete({_id:req.body._id})
+        res.send(`${docs.name} has been deleted succesfully`)
+    }catch(err){
+        res.send(err)
+    }
+})
+ 
+
+
+    

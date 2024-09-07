@@ -17,7 +17,6 @@ function AddUser(){
             userId: uniquid()
 
        }
-       console.log(user)
 
        axios.post('/api/user/adduser', user)
        .then(res =>{
