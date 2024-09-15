@@ -22,7 +22,7 @@ router.get('/test', (req, res) => {
 })
 
 //add User
-router.post('/adduser', (req, res) => {
+router.post('./adduser', (req, res) => {
     const newUser = new userModel({
         name: req.body.name,
         email: req.body.email,
@@ -42,7 +42,7 @@ router.post('/adduser', (req, res) => {
 })
 
 //get Users
-router.get('/getusers', async (req, res)=> {
+router.get('../user/getusers', async (req, res)=> {
     try{
         let docs = await userModel.find({})
         res.send(docs)
@@ -52,7 +52,7 @@ router.get('/getusers', async (req, res)=> {
 })
 
 //User
-router.route('/userdata')
+router.route('./userdata')
 .get(async (req, res) =>{
     try{
         let docs = await userModel.find({_id:req.body._id})

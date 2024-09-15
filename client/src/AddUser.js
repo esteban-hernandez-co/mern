@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import uniquid from 'uniqid'
 import axios from 'axios'
+import Box from '@mui/material/Box';
 
 function AddUser(){
 
@@ -28,7 +29,7 @@ function AddUser(){
     }
 
     return (
-        <div className='container'>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <div className='row'>
                 <h2 className='mt-4'>Add a User</h2>
             </div>
@@ -51,7 +52,7 @@ function AddUser(){
                     <button onClick={addUser} className='btn btn-success'>Save </button>
                 </div>
             </div>
-        </div>
+        </Box>
     )
 }
 
