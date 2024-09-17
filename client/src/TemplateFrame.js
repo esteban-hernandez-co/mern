@@ -43,7 +43,7 @@ function TemplateFrame({
   return (
     <ThemeProvider theme={dashboardTheme}>
       <Box sx={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
-        <StyledAppBar style={{ "background-image": "linear-gradient(to right, #00395d, #8f8f8c)" }}>
+        <StyledAppBar>
           <Toolbar
             variant="dense"
             disableGutters
@@ -52,7 +52,6 @@ function TemplateFrame({
               justifyContent: 'space-between',
               width: '100%',
               p: '8px 12px',
-              
             }}
           >
             <Button
@@ -66,9 +65,8 @@ function TemplateFrame({
             >
               Back to templates
             </Button>
-            
+
             <Box sx={{ display: 'flex', gap: 1 }}>
-              
               <ToggleColorMode
                 data-screenshot="toggle-mode"
                 mode={mode}
