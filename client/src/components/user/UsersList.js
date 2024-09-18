@@ -3,7 +3,7 @@ import axios from 'axios';
 import UserIndividual from './UserIndividual';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import DataTable from './DataTable';
+import DataTable from '../../DataTable';
 import Box from '@mui/material/Box';
 import { styled, useTheme } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
