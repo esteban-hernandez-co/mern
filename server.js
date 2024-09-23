@@ -20,6 +20,6 @@ app.get('/', (req, res) => {
 })
 
 //basic server set up
-app.listen(5000, function(){
+app.listen(9000, function(){
     console.log('Node Server is up and running')
 })

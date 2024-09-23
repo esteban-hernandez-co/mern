@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider, alpha } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import getDashboardTheme from './theme/getDashboardTheme';
-import AppNavbar from './components/AppNavbar';
-import Header from './components/Header';
-import MainGrid from './components/MainGrid';
-import SideMenu from './components/SideMenu';
-import TemplateFrame from './components/Base/TemplateFrame';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import getSignInSideTheme from '../../theme/getSignInSideTheme';
+import SignInCard from './SignInCard';
+import Content from './Content';
+import TemplateFrame from '../Base/TemplateFrame';
 
-export default function Dashboard() {
+
+export default function SignInSide() {
   const [mode, setMode] = React.useState('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
-  const dashboardTheme = createTheme(getDashboardTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
+  const SignInSideTheme = createTheme(getSignInSideTheme(mode));
   // This code only runs on the client side, to determine the system color preference
   React.useEffect(() => {
     // Check if there is a preferred mode in localStorage
@@ -47,34 +45,40 @@ export default function Dashboard() {
       mode={mode}
       toggleColorMode={toggleColorMode}
     >
-      <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
+      <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
         <CssBaseline enableColorScheme />
-        <Box sx={{ display: 'flex' }}>
-          <SideMenu />
-          <AppNavbar />
-          {/* Main content */}
-          <Box
-            component="main"
-            sx={(theme) => ({
-              flexGrow: 1,
-              backgroundColor: alpha(theme.palette.background.default, 1),
-              overflow: 'auto',
-            })}
+        <Stack
+          direction="column"
+          component="main"
+          sx={[
+            {
+              justifyContent: 'space-between',
+              height: { xs: 'auto', md: '100%' },
+            },
+            (theme) => ({
+              backgroundImage:
+                'radial-gradient(ellipse at 70% 51%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+              backgroundSize: 'cover',
+              ...theme.applyStyles('dark', {
+                backgroundImage:
+                  'radial-gradient(at 70% 51%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+              }),
+            }),
+          ]}
+        >
+          <Stack
+            direction={{ xs: 'column-reverse', md: 'row' }}
+            sx={{
+              justifyContent: 'center',
+              gap: { xs: 6, sm: 12 },
+              p: 2,
+              m: 'auto',
+            }}
           >
-            <Stack
-              spacing={2}
-              sx={{
-                alignItems: 'center',
-                mx: 3,
-                pb: 10,
-                mt: { xs: 8, md: 0 },
-              }}
-            >
-              <Header />
-              <MainGrid />
-            </Stack>
-          </Box>
-        </Box>
+            <Content />
+            <SignInCard />
+          </Stack>
+        </Stack>
       </ThemeProvider>
     </TemplateFrame>
   );
